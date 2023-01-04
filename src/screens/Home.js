@@ -14,7 +14,7 @@ function Home() {
 
   const loadData = async () => {
 
-   await axios.post(`https://backend-updated.onrender.com/foodData`)     //here we accessing that api/endpoint or connecting to that backend used to fetched backed data for cards
+   await axios.post(`https://backend-0ykc.onrender.com/foodData`)     //here we accessing that api/endpoint or connecting to that backend used to fetched backed data for cards
       
       .then(res => res.json())
       .then(data => {

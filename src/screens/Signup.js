@@ -18,7 +18,7 @@ const Signup = () => {
       alert("Invalid email")
       return
     }
-    axios.post(`https://backend-updated.onrender.com/creatuser`) 
+    axios.post(`https://backend-0ykc.onrender.com/creatuser`) 
     .then(res => res.json())
     .then(data => {
       console.log(data);

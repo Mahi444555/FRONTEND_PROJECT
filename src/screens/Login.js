@@ -16,7 +16,7 @@ const Login = () => {
       alert("Invalid email")
       return
     }
-    axios.post(`https://backend-updated.onrender.com/creatlogin`) 
+    axios.post(`https://backend-0ykc.onrender.com/creatlogin`) 
     .then(res => res.json())
     .then(data => {
       console.log(data);
