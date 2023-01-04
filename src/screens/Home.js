@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import axios from 'axios';
+
 
 function Home() {
   const [search, setSearch] = useState('');
@@ -12,16 +14,9 @@ function Home() {
 
   const loadData = async () => {
 
-    await fetch("http://localhost:5000/api/foodData", {      //here we accessing that api/endpoint or connecting to that backend used to fetched backed data for cards
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // body:JSON.stringify({    //now we don't need body:JSON.stringify because here not present name,email... filds
-
-      // })
-
-    }).then(res => res.json())
+   await axios.post(`https://backend-updated.onrender.com/foodData`)     //here we accessing that api/endpoint or connecting to that backend used to fetched backed data for cards
+      
+      .then(res => res.json())
       .then(data => {
         console.log(data)
         if (data.error) {
@@ -33,6 +28,7 @@ function Home() {
           setFoodCat(data[1]) //updating initialState by using currentState with both collection has "category" 
         }
       })
+    
   }
   useEffect(() => {
     loadData()
