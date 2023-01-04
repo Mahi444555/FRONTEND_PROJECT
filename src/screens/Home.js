@@ -12,7 +12,7 @@ function Home() {
 
   const loadData = async () => {
 
-    await fetch("https://backend-updated.onrender.com/foodData", {      //here we accessing that api/endpoint or connecting to that backend used to fetched backed data for cards
+    await fetch("http://localhost:5000/api/foodData", {      //here we accessing that api/endpoint or connecting to that backend used to fetched backed data for cards
       method: "post",
       headers: {
         "Content-Type": "application/json",
