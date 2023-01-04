@@ -1,4 +1,5 @@
 
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,31 +18,28 @@ const Signup = () => {
       alert("Invalid email")
       return
     }
-    fetch("https://backend-updated.onrender.com/creatuser", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        mobile,
-        password
+    axios.post(`https://backend-updated.onrender.com/creatuser`) 
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if (data.error) {
+        alert("Something went wrong plz try again ")
+      } else {
+        // M.toast({html: data.message, classes: '#c62828 green darken-1'})
+        alert("sucessfully done ")
+        navigate('/login');
+      }
+    }).catch(err => {
+      //   console.log(err)
+    
+      // body: JSON.stringify({
+      //   name,
+      //   email,
+      //   mobile,
+      //   password
 
       })
-    }).then(res => res.json())
-      .then(data => {
-        console.log(data);
-        if (data.error) {
-          alert("Something went wrong plz try again ")
-        } else {
-          // M.toast({html: data.message, classes: '#c62828 green darken-1'})
-          alert("sucessfully done ")
-          navigate('/login');
-        }
-      }).catch(err => {
-        //   console.log(err)
-      })
+    
   }
   return (
     <div style={{ backgroundImage: `url("https://media.istockphoto.com/id/1020849376/photo/silver-glitter-texture-white-sparkling-shiny-wrapping-paper-background-for-christmas-holiday.jpg?b=1&s=170667a&w=0&k=20&c=uFNVSG_Vn05tdZL_r9wVUrOfwpRnZ7lLiKkpS0K10eg=")` }}>

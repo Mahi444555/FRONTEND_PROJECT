@@ -1,4 +1,5 @@
 
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -15,33 +16,25 @@ const Login = () => {
       alert("Invalid email")
       return
     }
-    fetch("https://backend-updated.onrender.com/creatlogin", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password
-
-      })
-    }).then(res => res.json())
-      .then(data => {
-        console.log(data);
-        if(data.error) {
-          alert("Something went wrong plz try again ")
-        } else {
-          // M.toast({html: data.message, classes: '#c62828 green darken-1'})
-          alert("sucessfully done ")
-          localStorage.setItem("userEmail",email)               //******************* */
-          console.log(email);
-          localStorage.setItem("authToken",data.authToken)
-          console.log(localStorage.getItem("authToken"))
-          navigate('/');
-        }
-      }).catch(err => {
-           console.log(err)
-      })
+    axios.post(`https://backend-updated.onrender.com/creatlogin`) 
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.error) {
+        alert("Something went wrong plz try again ")
+      } else {
+        // M.toast({html: data.message, classes: '#c62828 green darken-1'})
+        alert("sucessfully done ")
+        localStorage.setItem("userEmail",email)               //******************* */
+        console.log(email);
+        localStorage.setItem("authToken",data.authToken)
+        console.log(localStorage.getItem("authToken"))
+        navigate('/');
+      }
+    }).catch(err => {
+         console.log(err)
+    
+    })
   }
   return (
     <div className='mycard'>
